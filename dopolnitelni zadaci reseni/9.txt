@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX 100
+
+int brojSvrznici(char *str){
+    int n,i,j,counter=0,prv=0,counterglaven=0,flag=0;
+    n = strlen(str);
+    for(i=0;i<n;i++){
+        if(isspace(str[i])||ispunct(str[i])){
+            if(isalpha(str[i+1])){
+                if(i<=3){
+                    if(isalpha(str[0]))
+                    prv++;
+                }
+            for(j=i+1,counter=0;j<n;j++,counter++){
+                if(isspace(str[j])||ispunct(str[j])){
+                    if(counter<=3){
+                        counterglaven++;
+                        break;
+                    }
+                }
+            }
+            }
+        }
+    }
+    counterglaven+=prv;
+    return counterglaven;
+}
+int main(){
+    char str[MAX];
+    char pechati[MAX];
+    int broj,max=0;
+    while(fgets(str, MAX, stdin)){
+        broj = brojSvrznici(str);
+        if(broj>max){
+            max=broj;
+            strcpy(pechati,str);
+        }
+    }
+    printf("%d: %s",max,pechati);
+    
+    return 0;
+}

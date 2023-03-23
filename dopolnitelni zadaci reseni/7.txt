@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+void premesti(int a[], int n) {
+int i=0;
+int prodolzi=0;
+int temp[100];
+for (i=0;i<n;i++){
+    if (a[i]>=0){
+        temp[prodolzi]=a[i];
+        prodolzi++;
+        }
+    }
+for(int i=0; i<n;i++){
+    if (a[i]<0){
+        temp[prodolzi]=a[i];
+        prodolzi++;
+    }
+}    
+for (i=0;i<n;i++){
+    a[i]=temp[i];
+    }
+}
+
+int main() {
+int a[100];
+int n,i;
+scanf ("%d",&n);
+for (i=0;i<n;i++){
+    scanf ("%d",&a[i]);
+}
+premesti(a,n);
+for (i=0;i<n;i++){
+    printf ("%d ",a[i]);
+    }
+return 0;
+}

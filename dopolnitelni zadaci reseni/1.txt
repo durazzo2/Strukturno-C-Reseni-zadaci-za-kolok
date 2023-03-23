@@ -1,0 +1,46 @@
+#include <stdio.h>
+void clean(char *niza){
+    if (niza[strlen(niza)-1]=='\n'){
+        niza[strlen(niza)-1]='\0';
+    }    
+}
+
+int palidrom(char *niza){
+   int i,flag=1,special=0;
+   int n = strlen(niza);
+   for (i=0;i<n/2;i++){
+       if (niza[i]!=niza[n-i-1]){
+           flag=0;
+       }
+   }
+   for (i=0;i<n;i++){
+       if (!isalnum(niza[i])){
+           special=1;
+       }
+   }
+   return flag==1 && special==1;
+}
+
+int main(){
+   char niza[100];
+   int i; int MAXLEN=0;char max[81];
+   int n;
+   scanf("%d",&n);
+   for (i=0;i<n;i++){
+       char red[100];
+       fgets(red,100,stdin);
+       clean(red);
+       if (palidrom(red)){
+           if (strlen(red)>MAXLEN){
+               MAXLEN=strlen(red);
+               strcpy(max,red);
+           }
+       }
+   }
+   
+ if (MAXLEN){
+     puts(max);
+ } else printf ("Nema!");
+ 
+    return 0;
+}

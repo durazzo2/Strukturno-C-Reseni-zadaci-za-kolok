@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX 100
+
+
+
+int sodrzi(char *str, char *str2){
+    int i,n,counter=0;
+    n = strlen(str);
+    for(int j=0;j<n;j++){
+        str[j] = toupper(str[j]);
+    }
+    for(i=0;i<n-3;i++){
+        if(strncmp(str2, (str + i), 3) == 0){
+            counter++;
+        }
+    }
+    if(counter>=2){
+        return 1;
+    }
+    else return 0;
+}
+
+int main()
+{
+    int i,n;
+    scanf("%d", &n);
+    char line[MAX];
+    char podniza[MAX] = "A1C";
+    for(i=0;i<=n;i++){
+        fgets(line, MAX, stdin);
+        
+        if(sodrzi(line,podniza)){
+            for(int j=0;j<strlen(line);j++){
+                line[j] = tolower(line[j]);
+            }
+            printf("%s", line);
+        }
+
+    }
+    return 0;
+}
