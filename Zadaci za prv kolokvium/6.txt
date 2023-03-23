@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main(){
+    int z;
+    int a,b;
+          int  sporedba=0;
+          float procent;
+    int brojac=0;
+    scanf ("%d",&z);
+
+    while (scanf("%d%d",&a,&b)){
+            int zbir=0;
+            if (a==0&&b==0){
+                break;
+            }
+        zbir=a+b;
+        if (zbir==z){
+                sporedba++;
+        }
+
+        brojac++;
+    }
+    printf ("Vnesovte %d parovi od broevi chij zbir e %d\n",sporedba,z);
+    procent=((float) sporedba/brojac*100.0);
+    printf("Procentot na parovi so zbir %d e %.2f%%\n",z,procent);
+}

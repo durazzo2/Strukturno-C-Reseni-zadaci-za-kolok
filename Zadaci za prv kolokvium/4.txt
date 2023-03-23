@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main(){
+    char znak;
+    int pBr=0;
+    int zbir=0;
+    do{
+        scanf("%c",&znak);
+        if(znak=='!'){
+           if(pBr<100){
+          zbir+=pBr;
+          }
+            break;
+        }
+        if(znak>='0' && znak<='9'){
+            int cifra=znak-'0';
+            pBr=pBr*10+cifra;
+        }else {
+            if(pBr<100){
+                zbir+=pBr;
+            }
+            pBr=0;
+        }
+    }while(1);
+    printf("%d",zbir);
+    return 0;
+}

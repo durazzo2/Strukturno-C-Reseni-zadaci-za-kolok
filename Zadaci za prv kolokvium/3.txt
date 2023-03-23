@@ -1,0 +1,18 @@
+#include <stdio.h>
+int main(){
+    int n,i,max_suma=0,temp_suma,broj;
+    scanf ("%d",&n);
+    for (i=1;i<n;i++){
+         temp_suma=0;
+        for(int j=1;j<i;j++){
+            if (i%j==0){
+                 temp_suma+=j;
+            }
+            if (temp_suma>max_suma){
+                max_suma=temp_suma;
+                broj=i;
+            }
+        }
+    }
+    printf ("%d",broj);
+}

@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+  int num_1, num_2, i = 1;
+  scanf("%d %d", &num_1, &num_2);
+  if (num_1 <= 0 || num_2 <= 0) {
+    printf("Invalid input");
+    return 0; // vaka e prekinvis programata!
+  }
+
+  if (num_2 > num_1) { // ako voriot input e pogolem od prviot
+    int temp = num_1; // vo temp go memoriras prviot 
+    num_1 = num_2; // na prviot mu ja davas vrednosta na vtorior
+    num_2 = temp; // na vtoriot mu ja davas od prviot
+  }// gi menvime vrednostite 
+  // DA
+
+  while (num_2) { // while loop-ov se izvrsvit samo ako "num_2" e `true`, t.e. ne e `false ili nula `0`. Nula e `false` !!!!!!!
+    if (i % 2 == 0) { // samo parni pozicii te interesiret (taka e vo zadacata)
+     // printf("i %d", i);
+      
+      if (num_2 % 10 != num_1 % 10) { // ovde vece sme vo parna pozicija, i provervime dali cifrata od edniot e ednakva na cifrata od drugiot broj
+        printf("NE");
+        return 0;
+      }
+      num_2 /= 10;// ovde se podelvit to sto ostana od `num_2 % 10`
+       //printf("num_2 %d", num_2);
+    }
+    num_1 /= 10;
+    //printf("num_1 %d", num_1);
+    i++; // a ovde ja zgolemvis pozicijata za sekojoa iteracija
+    // iteracija ti e sekoj krug vo loop-ot
+  }
+
+  printf("PAREN");
+  return 0;
+}

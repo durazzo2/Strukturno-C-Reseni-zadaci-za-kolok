@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main()
+{
+    int n;
+
+    while(scanf("%d",&n))
+    {
+        if(n<10)
+            continue;
+        int br = n;
+
+        int flag;
+        if(br%10 > br/10%10)
+            flag = 1;
+        else flag = 0;
+
+        int daliZikZak = 1;
+        while(br>10)
+        {
+            if(flag==1&&br%10<=br/10%10)
+            {
+                daliZikZak = 0;
+                break;
+            }
+            if(flag==0&&br%10>=br/10%10)
+            {
+                daliZikZak = 0;
+                break;
+            }
+
+            flag = !flag;
+            br/=10;
+        }
+        if(daliZikZak == 1)
+        {
+            printf("%d\n",n);
+        }
+    }
+
+}

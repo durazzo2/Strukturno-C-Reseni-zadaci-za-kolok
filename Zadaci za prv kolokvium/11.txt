@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n;
+    while (scanf("%d",&n))
+    {
+    if (n<10){
+    continue;
+    }
+    int broj=n;
+    int flag;
+
+    if (broj%10<5){
+        flag=1;
+    }
+    else flag=0;
+
+    int cikcak=1;
+
+    while (broj>=10){
+        if (flag==1&&broj/10%10<5){
+            cikcak=0;
+            break;
+        }
+        if (flag==0&&broj/10%10>=5){
+            cikcak=0;
+            break;
+        }
+        flag=!flag;
+        broj/=10;
+
+    }
+    if (cikcak==1){
+        printf("%d\n",n);
+    }
+    }
+return 0;
+}
