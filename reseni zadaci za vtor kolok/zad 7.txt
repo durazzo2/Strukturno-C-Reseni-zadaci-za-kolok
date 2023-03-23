@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#define MAX 100
+
+int main()
+{
+int a[MAX][MAX];
+int redici,koloni,i,j,zbir=0,maxEL;
+double srv=0,razlika=0,max;
+scanf("%d %d", &redici, &koloni);
+int b[MAX];
+for(i=0;i<redici;i++){
+    for(j=0;j<koloni;j++){
+        scanf("%d", &a[i][j]);
+    }
+}
+for(i=0;i<redici;i++){
+    zbir=0;
+    srv=0;
+    for(j=0;j<koloni;j++){
+        zbir+=a[i][j];
+        if(j==koloni-1){
+            srv = (double) zbir/koloni;
+            for(j=0;j<koloni;j++){
+                if(j==0){
+                max = fabs(a[i][j] - srv);
+                maxEL=a[i][j];
+                }
+                razlika = fabs(a[i][j] - srv);
+                if(razlika>max){
+                    max=razlika;
+                    maxEL=a[i][j];
+                }
+                if(j==koloni-1){
+                    b[i]=maxEL;
+                }
+            }
+        }
+    }
+}
+for(i=0;i<redici;i++){
+        printf("%d ", b[i]);
+}
+    return 0;
+}

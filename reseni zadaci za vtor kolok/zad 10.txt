@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+void writeToFile() {
+  FILE *f = fopen("podatoci.txt", "w");
+  char c;
+  while((c = getchar()) != '#') {
+    fputc(c, f);
+  }
+  fclose(f);
+}
+
+
+int main(){
+    writeToFile();
+    FILE *f = fopen("podatoci.txt", "r");
+    char a,b;
+    getchar();
+    a=getchar();
+    b=getchar();
+    char red[100];
+    int i,indeks1,indeks2;
+    while(fgets(red, 100, f)!=NULL){
+        int flag=0;
+        for(i=0;i<strlen(red)-1;i++){
+            if(red[i]==a && flag==0){
+                indeks1=i;
+                flag=1;
+            }
+            if(red[i]==b){
+                indeks2=i;
+            }
+        }
+        for(i=indeks1+1;i<indeks2;i++){
+            printf("%c", red[i]);
+        }
+        printf("\n");
+    }
+    fclose(f);
+    return 0;
+}
+
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+void writeToFile() {
+  FILE *f = fopen("podatoci.txt", "w");
+  char c;
+  while((c = getchar()) != '#') {
+    fputc(c, f);
+  }
+  fclose(f);
+}
+
+int znak1 (char *red,char z1){
+    int i;
+    int a=0;
+    int flag=0;
+    for (i=0;i<strlen(red);i++){
+        if (red[i]==z1 && flag==0){
+            a=i;
+            flag=1;
+        }
+    }
+    return a;
+}
+int znak2 (char *red,char z2){
+    int i;
+    int a=0;
+    int flag=0;
+    for (i=strlen(red)-1;i>=0;i++){
+        if (red[i]==z2 && flag==0){
+            a=i;
+           flag=1;
+        }
+    }
+    return a;
+}
+
+int main(){
+    writeToFile();
+    FILE *f = fopen("podatoci.txt", "r");
+    char z1;
+    char z2;
+    getchar();
+    z1=getchar();
+    z2=getchar();
+    char red[100];
+    int i;
+    int ind1,ind2;
+    while (fgets(red,100,f)!=NULL){
+        ind1=znak1(red,z1);
+        ind2=znak2(red,z2);
+        for (i=ind1+1;i<ind2;i++){
+            printf ("%c",red[i]);
+        }
+        printf ("\n");
+    }
+    
+    fclose(f);
+    return 0;
+}

@@ -1,0 +1,62 @@
+#include <string.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+
+void swap(char *a, char *b){
+    char tmp;
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+int brojkiCounter(char *line, char *newline){
+    int counter=0,i,n,g=0;
+    n = strlen(line);
+    for(i=0;i<n;i++){
+        if(isdigit(line[i])){
+            counter++;
+            newline[g] = line[i];
+            g++;
+        }
+        newline[g] = '\0';
+    }
+    return counter;
+}
+void sort(char *line){
+    int j,i,n;
+    n = strlen(line);
+    for(i=0;i<n;i++){
+        for(j=0;j<n-1;j++){
+            if(line[j] > line[j+1]){
+                swap(&line[j], &line[j+1]);
+            }
+        }
+    }
+}
+
+
+void wtf() {
+    FILE *f = fopen("input.txt", "w");
+    char c;
+    while((c = getchar()) != EOF) {
+        fputc(c, f);
+    }
+    fclose(f);
+}
+
+int main() {
+    wtf();
+    FILE *f = fopen("input.txt", "r");
+    char line[MAX];
+    char newline[MAX];
+    int brojki;
+    while(fgets(line, MAX, f) != NULL){
+        brojki = brojkiCounter(line,newline);
+        sort(newline);
+        printf("%d:%s\n", brojki, newline);
+    }
+    fclose(f);
+    return 0;
+}

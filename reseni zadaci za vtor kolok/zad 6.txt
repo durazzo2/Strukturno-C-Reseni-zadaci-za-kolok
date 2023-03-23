@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+
+int main()
+{
+int counter=0,glavenbrojac=0;
+int a[MAX][MAX];
+int n,m;
+scanf ("%d%d",&n,&m);
+int i,j;
+for (i=0;i<n;i++){
+    for (j=0;j<m;j++){
+        scanf("%d",&a[i][j]);
+    }
+}
+for (i=0;i<n;i++){
+    counter = 1;
+    for (j=0;j<m;j++){
+        if (j!=m-1){
+            if (a[i][j]==1 && a[i][j+1]==1 && a[i][j+2]==1){
+                glavenbrojac++;
+                break;
+            }
+        }
+    }
+}
+for (j=0;j<m;j++){
+    counter =1;
+    for (i=0;i<n;i++){
+        if (i!=n-1){
+            if (a[i][j]==1 && a[i+1][j]==1 && a[i+2][j]==1){
+                glavenbrojac++;
+                break;
+            }
+        }
+    }
+}
+printf ("%d",glavenbrojac);
+
+return 0;}            

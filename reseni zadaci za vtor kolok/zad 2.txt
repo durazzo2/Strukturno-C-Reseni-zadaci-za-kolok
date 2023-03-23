@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+
+//ne menuvaj!
+void wtf() {
+    FILE *f = fopen("broevi.txt", "w");
+    char c;
+    while((c = getchar()) != EOF) {
+        fputc(c, f);
+    }
+    fclose(f);
+}
+
+int main()
+{
+    wtf();
+    FILE *f = fopen("broevi.txt", "r");
+    int broj,max,sporedba,counter=0,kolku,tmp;
+    
+    while (fscanf(f,"%d",&broj)){
+        if (broj==0){
+            break;
+        }
+        if (!counter){
+            kolku=broj;
+        }
+        if (counter>=1){
+            tmp=broj;
+            while(tmp>9){
+                tmp/=10;
+            }
+            if (counter==1){
+                max=broj;
+                sporedba=tmp;
+            }
+            else if (tmp>sporedba){
+                sporedba=tmp;
+                max=broj;
+            }
+        }
+        if (counter==kolku){
+            printf ("%d\n",max);
+            counter=0;
+            max=0;
+            continue;
+        }
+        counter ++;
+    }
+    
+    fclose(f);
+}

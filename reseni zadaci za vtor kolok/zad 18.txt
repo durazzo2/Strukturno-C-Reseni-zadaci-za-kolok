@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+
+
+int main()
+{
+float a[MAX][MAX],b[MAX][MAX];
+int n,i,j,tmp=0;
+float x=0,y=0;
+scanf("%d", &n);
+for(i=0;i<n;i++){
+    for(j=0;j<n;j++){
+        scanf("%f", &a[i][j]);
+    }
+}
+for(i=0;i<n;i++){
+    for(j=0;j<n;j++){
+        if(i+j<tmp){
+            x+=a[i][j];
+        }
+    }
+    tmp+=2;
+}
+for(i=0;i<n;i++){
+    tmp=n-1;
+    for(j=0;j<n;j++){
+        if(i+j>tmp){
+            y+=a[i][j];
+        }
+    }
+}
+for(i=0;i<n;i++){
+    for(j=0;j<n;j++){
+            if(i==j){
+                b[i][j]=x;
+            }
+            if(i+j==n-1){
+                if(b[i][j]==x){
+                    b[i][j]=x+y;
+                }
+            else {
+            b[i][j]=y;
+                }
+            }
+    }
+}
+for(i=0;i<n;i++){
+    for(j=0;j<n;j++){
+            printf("%.1f ",b[i][j]);
+    }
+    printf("\n");
+}
+
+    return 0;
+}

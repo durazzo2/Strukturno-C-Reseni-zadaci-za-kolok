@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#define MAX 100
+int proverka(char *str){
+    int i, n, counter=0;
+    n = strlen(str);
+    for(i=0;i<n;i++){
+        if(isdigit(str[i])){
+            counter++;
+        }
+    }
+    if(counter>=2){
+        return 1;
+    }
+    else return 0;
+
+}
+
+int odpocetok(char *str){
+    int i,n;
+    n = strlen(str);
+    for(i=0;i<n;i++){
+        if(isdigit(str[i])){
+            return i;
+        }
+    }
+}
+int odkraj(char *str){
+    int i,n;
+    n = strlen(str);
+    for(i=n-1;i>=0;i--){
+        if(isdigit(str[i])){
+            return i;
+        }
+    }
+}
+
+// ne menuvaj ovde
+void wtf() {
+    FILE *f = fopen("dat.txt", "w");
+    char c;
+    while((c = getchar()) != EOF) {
+        fputc(c, f);
+    }
+    fclose(f);
+}
+
+int main() {
+    wtf();
+        FILE *f = fopen("dat.txt", "r");
+    char str[MAX],krajna[MAX];
+    int i,pocetok,kraj,max,n;
+  while(fgets(str, MAX, f) != NULL){
+        if(proverka(str)){
+            n=strlen(str);
+            if(n>=max){
+                max = n;
+                pocetok = odpocetok(str);
+                kraj = odkraj(str);
+                for(i=pocetok;i<=kraj;i++){
+                    krajna[i]=str[i];
+                }
+                krajna[i+1] = '\0';
+            }
+        }
+    }
+        for(i=pocetok;i<=kraj;i++){
+            printf("%c", krajna[i]);
+        }
+    fclose(f);
+    return 0;
+}

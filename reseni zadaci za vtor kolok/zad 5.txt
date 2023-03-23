@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+#include <ctype.h>
+#include <string.h>
+
+
+// ne menuvaj ovde
+void wf() {
+    FILE *f = fopen("livce.txt", "w");
+    char c;
+    while((c = getchar()) != '#') {
+        fputc(c, f);
+    }
+    fclose(f);
+}
+
+int main()
+{
+    wf();
+    int i;
+    FILE *f = fopen("livce.txt", "r");
+    int uplata;
+    int tip;
+    double koef;
+    double vkupenkoef=1;
+    double maxkoef=0;
+    char maxigra[100];
+    int maxtip;
+    char utakmica[100];
+    fscanf(f,"%d",&uplata);
+    while(fscanf(f,"%s %d %lf",utakmica,&tip,&koef)!= EOF){
+        if (utakmica[0] == '#'){
+            break;
+        }
+        vkupenkoef*=koef;
+        if(koef>maxkoef){
+            maxkoef=koef;
+            maxtip=tip;
+            for(i=0;i<strlen(utakmica);i++){
+                maxigra[i]=utakmica[i];
+            }
+            maxigra[i]='\0';
+        }
+    }
+    printf ("%s %d %.2lf\n%.2lf",maxigra,maxtip,maxkoef,uplata*vkupenkoef);
+    fclose(f);
+    return 0;
+}

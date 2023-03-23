@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void pomestuvanje(char* string,int x){
+    if(*string == '\0') return;
+    if(isalpha(*string)){
+        int bukva = *string + x;
+        if(islower(*string)){
+            if(bukva>'z') bukva = bukva%'z' + 'a' - 1;
+        }
+        if(isupper(*string)){
+            if(bukva>'Z') bukva = bukva%'Z' + 'A' - 1;
+        }
+        *string = bukva;
+    }
+    pomestuvanje(string+1,x);
+}
+
+int main(){
+    int n,x;
+    scanf("%d%d\n",&n,&x);
+    for(int i=0;i<n;i++){
+        char string[80];
+        fgets(string,80,stdin);
+        pomestuvanje(string,x);
+        printf("%s",string);
+    }
+    return 0;
+} 

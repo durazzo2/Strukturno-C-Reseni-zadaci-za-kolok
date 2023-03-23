@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h> // 398 -> 378
+#define MAX 100
+
+void swap(int *a, int *b){
+    int tmp;
+    tmp= *a;
+    *a=*b;
+    *b=tmp;
+}
+
+void podreduvanje(int *a,int n){
+    int i,j;
+    for(i=0;i<n;i++){
+        for(j=0;j<n-1;j++){
+            if(a[j]>a[j+1]){
+                swap(&a[j], &a[j+1]);
+            }
+        }
+    }
+}
+
+
+int poramnet(int a){
+    if(a==0) return a;
+    if(a%10==9) return 7 + poramnet(a/10) * 10;
+    else return a%10 + poramnet(a/10) * 10;
+}
+
+int main()
+{
+    int broj,i=0,n,novbroj;
+    int niza[MAX];
+    while(scanf("%d", &broj)){
+        novbroj = poramnet(broj);
+        niza[i] = novbroj;
+        i++;
+    }
+podreduvanje(niza,i);
+if(i<5){
+    for(n=0;n<i;n++){
+    printf("%d ", niza[n]);
+}
+}
+else{
+for(n=0;n<5;n++){
+    printf("%d ", niza[n]);
+}
+}
+    return 0;
+}

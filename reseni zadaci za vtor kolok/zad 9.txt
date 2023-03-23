@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <string.h>
+
+double dropka(int *a,int from,int to){
+    if (from+1==to){
+        return a[from];
+    }else {
+    return  a[from]+1.0/(dropka(a,from+1,to));
+}}
+
+int main(){
+    int a[100],i,n;
+    scanf ("%d",&n);
+    for (i=0;i<n;i++){
+        scanf ("%d",&a[i]);
+    }
+    printf ("%lf",dropka(a,0,n));
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+void writeToFile() {
+  FILE *f = fopen("text.txt", "w");
+  char c;
+  while((c = getchar()) != '#') {
+    fputc(c, f);
+  }
+  fclose(f);
+}
+char samoglaska (char a){
+    a=tolower(a);
+    int i;
+    if (a=='a'||a=='e'||a=='u'||a=='i'||a=='o'){
+        return 1;
+        }
+        return 0;
+    }
+
+
+int main() {
+    
+  writeToFile();
+   FILE *f = fopen("text.txt", "r");
+   char a;
+   int counter=0;
+   char b;
+   b=fgetc(f);
+   while ((a=fgetc(f))!=EOF){
+       if (samoglaska(b)&&samoglaska(a)){
+           printf ("%c%c\n",tolower(b),tolower(a));
+           counter++;
+       }
+       b=a;
+   }
+   printf ("%d",counter);
+fclose(f);
+  return 0;
+}

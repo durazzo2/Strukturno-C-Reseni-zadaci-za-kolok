@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#define MAX 100
+
+int main()
+{
+int a[MAX][MAX];
+int i,j,x,redici,zbir,koloni,suma1,suma2,razl,polovina;
+scanf("%d %d", &redici, &koloni);
+for(i=0;i<redici;i++){
+    for(j=0;j<koloni;j++){
+        scanf("%d", &a[i][j]); // 1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16
+    }
+}
+if(koloni%2==1){
+    polovina=(koloni/2);
+    for(i=0;i<redici;i++){
+            suma1=0;
+            suma2=0;
+            razl=0;
+        for(j=0;j<koloni;j++){
+                if(j<=polovina){
+                    suma1+=a[i][j];
+                }
+                if(j>=polovina){
+                    suma2+=a[i][j];
+                }
+            }
+        razl=abs(suma1-suma2);
+        a[i][polovina]=razl;
+        
+    }
+}
+else{ //polovina i polovina-1
+    polovina=(koloni/2);
+    for(i=0;i<redici;i++){
+        suma1=0;
+        suma2=0;
+        razl=0;
+        for(j=0;j<koloni;j++){
+                if(j<=polovina-1){
+                    suma1+=a[i][j];
+                }
+                if(j>=polovina){
+                    suma2+=a[i][j];
+                }
+        }
+        razl=abs(suma1-suma2);
+        a[i][polovina]=razl;
+        a[i][polovina-1]=razl;
+    }
+}
+for(i=0;i<redici;i++){
+    for(j=0;j<koloni;j++){
+        printf("%d ", a[i][j]);
+    }
+    printf("\n");
+}
+    return 0;
+}

@@ -1,0 +1,19 @@
+#include <stdio.h>
+int rek(int a){
+    if (a==0){
+        return a;
+    }
+    int pr=rek(a/10);
+    if (a%10>pr){
+        return a%10;
+    }else return pr;
+}
+
+int main(){
+    int a;
+    int da;
+    while (scanf ("%d",&a)){
+        da=rek(a);
+        printf ("%d\n",da);
+    }
+}
